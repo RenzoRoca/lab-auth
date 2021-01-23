@@ -19,13 +19,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 // Iteration 2: configure session
-
+app.use(session);
 app.use((req, res, next) => {
   // la variable path se podrá usar desde cualquier vista de hbs (/register, /posts)
   res.locals.path = req.path;
 
   // Iteration 2: load session user if exists at the session cookie and set the user at locals & request.
-
+  res.locals.currentUser = req.session.currentUserId;
   next(); // think where this next() must be called =D
 });
 
