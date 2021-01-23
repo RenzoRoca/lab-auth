@@ -64,7 +64,8 @@ module.exports.doLogin = (req, res, next) => {
   
 
 module.exports.logout = (req, res, next) => {
-    // Iteration 2: logout
+    req.session.destroy();
+    res.redirect('/login');
 };
 
 module.exports.list = (req, res, next) => {
